@@ -27,13 +27,16 @@ def send_message(peer_id, message):  # отправляет сообщениие
 
 
 def send_random(peer_id):  # возвращяет обращение к любому участнику беседы(нужны права администратора для бота)
-    answer = vk.messages.getConversationMembers(
-        peer_id=peer_id,
-    )
-    users = []
-    for i in answer["items"]:
-        users.append(i["member_id"])
-    return "@id" + str(random.choice(users))
+    try:
+        answer = vk.messages.getConversationMembers(
+            peer_id=peer_id,
+        )
+        users = []
+        for i in answer["items"]:
+            users.append(i["member_id"])
+        return "@id" + str(random.choice(users))
+    except:
+        return "бот не имеет права администратора в этой беседе"
 
 
 def psycho():
