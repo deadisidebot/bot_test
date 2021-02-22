@@ -46,6 +46,21 @@ def psycho():
     return " ".join([str(i) for i in range(1000, -1, -7)])
 
 
+def chance():
+    text = mes.replace('/вероятность', '')
+    ran = random.randint(1, 100)
+    ans = 'Вероятность того, что' + text + ' ' + str(ran) + '% '
+    print(ans)
+    return ans
+
+
+def send_message(peer_id, message):
+    vk.messages.send(
+        peer_id=peer_id,
+        message=message,
+        random_id=get_random_id(),
+
+
 def delay_send_message(peer_id, text_message, trigger):
     global f
     if not trigger:
