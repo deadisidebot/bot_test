@@ -53,7 +53,7 @@ def who():
 def chance():
     text = mes.replace('/вероятность', '')
     ran = random.randint(1, 100)
-    return 'Вероятность того, что' + text + ' ' + str(ran) + '% '
+    return 'Вероятность ' + text + ' ' + str(ran) + '% '
 
 def iq():
     text = mes.replace('/iq', '')
