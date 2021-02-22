@@ -34,7 +34,10 @@ def send_random(peer_id):  # возвращяет обращение к любо
         users = []
         for i in answer["items"]:
             users.append(i["member_id"])
-        return "@id" + str(random.choice(users))
+        output_id = random.choice(users)
+        for i in answer["profiles"]:
+            if i["id"] == output_id:
+                return "@id" + str(output_id) + "(" + i["first_name"] + " " + i["last_name"] + ")"
     except:
         return "бот не имеет права администратора в этой беседе"
 
