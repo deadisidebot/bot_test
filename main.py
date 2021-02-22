@@ -27,8 +27,6 @@ for event in longPoll.listen():
             functions.send_message(peer_id, "qwe")
         elif "qwe" in message:
             functions.send_message(peer_id, "zxc")
-        elif "призыв" in message:
-            functions.send_message(peer_id, "@all")
         elif "ауе" in message:
             functions.send_message(peer_id, functions.open_txt("aue.txt"))
         elif "соня" in message:
