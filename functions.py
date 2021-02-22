@@ -47,9 +47,11 @@ def psycho():
 
 
 def who():
-    text = mes.replace('/кто', '')
-    return 'Я думаю что' + text + ' ' + send_random(peer_id)
-
+    try:
+        text = mes.replace('/кто', '')
+        return 'Я думаю что' + text + ' ' + send_random(peer_id)
+    except:
+        return 'не умею думать'
 def chance():
     text = mes.replace('/вероятность', '')
     ran = random.randint(1, 100)
@@ -61,11 +63,11 @@ def iq():
     return 'Я думаю, что' + text + ' имеет ' + str(ran) + 'iq'
 
 def love():
-    text = mes.replace('!кто кого', '')
-    first = send_random(peer_id)
-    second = send_random(peer_id)
-    return str(first) + ' любит ' + str(second)
-
+    try:
+        text = mes.replace('!кто кого', '')
+        return send_random(peer_id) + ' любит ' + send_random(peer_id)
+    except:
+        return 'не умею думать'
 
 def delay_send_message(peer_id, text_message, trigger):
     global f
