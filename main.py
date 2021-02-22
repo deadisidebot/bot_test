@@ -45,3 +45,7 @@ for event in longPoll.listen():
             functions.send_message(peer_id, functions.who())
         elif '/вероятность' in message:
             functions.send_message(peer_id, functions.chance())
+        elif '/iq' in message:
+            functions.send_message(peer_id, functions.iq())
+        elif '!кто кого' in message:
+            functions.send_message(peer_id, functions.love())
