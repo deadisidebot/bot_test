@@ -46,19 +46,25 @@ def psycho():
     return " ".join([str(i) for i in range(1000, -1, -7)])
 
 
+def who():
+    text = mes.replace('/кто', '')
+    return 'Я думаю что' + text + ' ' + send_random(peer_id)
+
 def chance():
     text = mes.replace('/вероятность', '')
     ran = random.randint(1, 100)
-    ans = 'Вероятность того, что' + text + ' ' + str(ran) + '% '
-    print(ans)
-    return ans
+    return 'Вероятность того, что' + text + ' ' + str(ran) + '% '
 
+def iq():
+    text = mes.replace('/iq', '')
+    ran = random.randint(1, 300)
+    return 'Я думаю, что' + text + ' имеет ' + str(ran) + 'iq'
 
-def send_message(peer_id, message):
-    vk.messages.send(
-        peer_id=peer_id,
-        message=message,
-        random_id=get_random_id(),
+def love():
+    text = mes.replace('!кто кого', '')
+    first = send_random(peer_id)
+    second = send_random(peer_id)
+    return str(first) + ' любит ' + str(second)
 
 
 def delay_send_message(peer_id, text_message, trigger):
