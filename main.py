@@ -40,11 +40,13 @@ for event in longPoll.listen():
             functions.send_message(peer_id, functions.send_random(peer_id))
         elif "ping" in message:
             functions.send_message(peer_id, "pong")
-        elif '/кто' in message:
+        elif "/кто" in message:
             functions.send_message(peer_id, functions.who(peer_id, message))
-        elif '/вероятность' in message:
+        elif "/вероятность" in message:
             functions.send_message(peer_id, functions.chance(message))
-        elif '/iq' in message:
+        elif "/iq" in message:
             functions.send_message(peer_id, functions.iq(message))
-        elif '!кто кого' in message:
+        elif "!кто кого" in message:
             functions.send_message(peer_id, functions.love(peer_id))
+        elif "/photo" in message:
+            functions.send_photo(peer_id, functions.random_photo_id())

@@ -43,31 +43,43 @@ def send_random(peer_id):  # возвращяет обращение к любо
         return "бот не имеет права администратора в этой беседе"
 
 
-def psycho():  # вохвращяет стороку с 1000 993 и т.д
+def psycho():  # возвращяет стороку с 1000 993 и т.д
     return " ".join([str(i) for i in range(1000, -1, -7)])
 
 
-def who(peer_id, message):
+def who(peer_id, message):  # возвращят строку с упоминанием кого-то
     text = message.replace("/кто", "")
     return "Я думаю что" + text + " " + send_random(peer_id)
 
 
-def chance(message):
+def chance(message):  # возвращяет строку с вероятностью какого-либо события
     text = message.replace("/вероятность", "")
     ran = random.randint(1, 100)
     return "Вероятность " + text + " " + str(ran) + "% "
 
 
-def iq(message):
+def iq(message):  # возвращяет обращение + рандомное iq
     text = message.replace("/iq", "")
     ran = random.randint(1, 300)
-    return "Я думаю, что" + text + " имеет " + str(ran) + "iq"
+    return "Я думаю, что" + text + " имеет " + str(ran) + " iq"
 
 
-def love(peer_id):
+def love(peer_id):  # возвращяет 2 человек из беседы
     first_person = send_random(peer_id)
     second_person = send_random(peer_id)
     return first_person + " любит " + second_person
+
+
+def send_photo(peer_id, attachment):
+    vk.messages.send(
+        peer_id=peer_id,
+        attachment=attachment,
+        random_id=get_random_id(),
+    )
+
+
+def random_photo_id():
+    return random.choice(["photo-181110264_457239022", "photo-181110264_457239023"])
 
 
 def delay_send_message(peer_id, text_message, trigger):
