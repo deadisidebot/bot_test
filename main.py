@@ -21,7 +21,6 @@ for event in longPoll.listen():
 
         # lower - это метод приведения к нижнему регистру. Для регистронезависимости.
         message = event.obj["text"].lower()
-        mes = str(event.obj['text'].lower())
         # message теперь в нижнем регистре, поэтому все проверки делаем тоже в нижнем регистре
         if "zxc" in message:
             functions.send_message(peer_id, "qwe")
@@ -42,10 +41,10 @@ for event in longPoll.listen():
         elif "ping" in message:
             functions.send_message(peer_id, "pong")
         elif '/кто' in message:
-            functions.send_message(peer_id, functions.who())
+            functions.send_message(peer_id, functions.who(peer_id, message))
         elif '/вероятность' in message:
-            functions.send_message(peer_id, functions.chance())
+            functions.send_message(peer_id, functions.chance(message))
         elif '/iq' in message:
-            functions.send_message(peer_id, functions.iq())
+            functions.send_message(peer_id, functions.iq(message))
         elif '!кто кого' in message:
-            functions.send_message(peer_id, functions.love())
+            functions.send_message(peer_id, functions.love(peer_id))

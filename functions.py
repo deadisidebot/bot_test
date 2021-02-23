@@ -33,7 +33,8 @@ def send_random(peer_id):  # возвращяет обращение к любо
         )
         users = []
         for i in answer["items"]:
-            users.append(i["member_id"])
+            if i["member_id"] > 0:
+                users.append(i["member_id"])
         output_id = random.choice(users)
         for i in answer["profiles"]:
             if i["id"] == output_id:
@@ -42,32 +43,32 @@ def send_random(peer_id):  # возвращяет обращение к любо
         return "бот не имеет права администратора в этой беседе"
 
 
-def psycho():
+def psycho():  # вохвращяет стороку с 1000 993 и т.д
     return " ".join([str(i) for i in range(1000, -1, -7)])
 
 
-def who():
-    try:
-        text = mes.replace('/кто', '')
-        return 'Я думаю что' + text + ' ' + send_random(peer_id)
-    except:
-        return 'не умею думать'
-def chance():
-    text = mes.replace('/вероятность', '')
+def who(peer_id, message):
+    text = message.replace("/кто", "")
+    return "Я думаю что" + text + " " + send_random(peer_id)
+
+
+def chance(message):
+    text = message.replace("/вероятность", "")
     ran = random.randint(1, 100)
-    return 'Вероятность ' + text + ' ' + str(ran) + '% '
+    return "Вероятность " + text + " " + str(ran) + "% "
 
-def iq():
-    text = mes.replace('/iq', '')
+
+def iq(message):
+    text = message.replace("/iq", "")
     ran = random.randint(1, 300)
-    return 'Я думаю, что' + text + ' имеет ' + str(ran) + 'iq'
+    return "Я думаю, что" + text + " имеет " + str(ran) + "iq"
 
-def love():
-    try:
-        text = mes.replace('!кто кого', '')
-        return send_random(peer_id) + ' любит ' + send_random(peer_id)
-    except:
-        return 'не умею думать'
+
+def love(peer_id):
+    first_person = send_random(peer_id)
+    second_person = send_random(peer_id)
+    return first_person + " любит " + second_person
+
 
 def delay_send_message(peer_id, text_message, trigger):
     global f
@@ -81,3 +82,4 @@ def delay_send_message(peer_id, text_message, trigger):
             f = time.perf_counter()
         else:
             send_message(peer_id, "защита от манука")
+
