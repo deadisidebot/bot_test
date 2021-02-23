@@ -5,7 +5,7 @@ import time
 
 
 def open_txt(txt_name):  # возвращяет текст из тестового файла
-    file = open("txt\\" + txt_name, "r", encoding="utf-8")  # txt\ папка где все лежит
+    file = open("txt/" + txt_name, "r", encoding="utf-8")  # txt\ папка где все лежит
     output = file.read()
     file.close()
     return output
