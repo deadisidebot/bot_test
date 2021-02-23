@@ -77,6 +77,16 @@ def love(peer_id):  # возвращяет обращения к 2 челове�
     second_person = send_random(peer_id)
     return first_person + " любит " + second_person
 
+def dinicks():
+    niks = open_txt("dinick.txt")
+    text = niks.split(',')
+    ans = ' '
+    secondint = random.randint(3, 6)
+    for i in range(1, secondint):
+        fv = random.choice(text)
+        ans = ans + ' ' + fv
+    return ans
+
 
 def dead_inside_nicks():  # возвращяет ник состоящий из случайных слов
     text = open_txt("dead_inside_nicks.txt").split(" ")

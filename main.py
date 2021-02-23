@@ -59,4 +59,5 @@ for event in longPoll.listen():
         elif "ник" in message:
             f.send_message(peer_id, f.dead_inside_nicks())
         # elif "мем" in message:  не работает переделать
-        #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))  # photo-174862538_457403123
+        #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
+        # photo-174862538_457403123
