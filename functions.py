@@ -104,7 +104,7 @@ def delay_send_message(peer_id, text_message, trigger):
             send_message(peer_id, "защита от манука")
 
 
-def read_db():
+def read_db(): #кто это такое 
     connection = sqlite3.connect("profiles.db")
     cursor = connection.cursor()
     result = cursor.execute("SELECT * FROM id_table").fetchall()
