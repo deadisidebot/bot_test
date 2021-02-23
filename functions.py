@@ -77,6 +77,16 @@ def love(peer_id):  # возвращяет 2 человек из беседы
     second_person = send_random(peer_id)
     return first_person + " любит " + second_person
 
+def dinicks():
+    niks = open_txt("dinick.txt")
+    text = niks.split(' ')
+    ans = ' '
+    secondint = random.randint(3, 6)
+    for i in range(1, secondint):
+        fv = random.choice(text)
+        ans = ans + ' ' + fv
+    return ans
+
 
 def send_photo(peer_id, attachment):  # отправляет фото
     vk.messages.send(
