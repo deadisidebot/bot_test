@@ -79,7 +79,7 @@ def love(peer_id):  # возвращяет 2 человек из беседы
 
 def dinicks():
     niks = open_txt("dinick.txt")
-    text = niks.split(' ')
+    text = niks.split(',')
     ans = ' '
     secondint = random.randint(3, 6)
     for i in range(1, secondint):
