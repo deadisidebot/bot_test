@@ -54,3 +54,5 @@ for event in longPoll.listen():
             functions.send_photo(peer_id, functions.random_photo_id())
         elif "сообщения" in message:
             functions.send_message(peer_id, functions.appeal(from_id) + " ваши сообщения: " + str(functions.message_counter_read(from_id)))
+        elif 'ник' in message:
+            send_message(peer_id, dinicks())
