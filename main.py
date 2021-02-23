@@ -1,8 +1,8 @@
 from vk_api import VkApi
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
-import functions  # подключаем все функции
+import functions as f  # подключаем все функции
 
-accessToken = functions.open_txt("access_token.txt")
+accessToken = f.open_txt("access_token.txt")
 groupId = 181110264
 
 vkBotSession = VkApi(token=accessToken)
@@ -19,38 +19,44 @@ for event in longPoll.listen():
         from_id = event.obj["from_id"]  # id пользователя, который отправил сообщение
         peer_id = event.obj["peer_id"]  # peer_id беседы или ЛС, откуда пришло сообщение
 
-        functions.message_counter(from_id)
+        f.message_counter(from_id)
 
         # lower - это метод приведения к нижнему регистру. Для регистронезависимости.
         message = event.obj["text"].lower()
         # message теперь в нижнем регистре, поэтому все проверки делаем тоже в нижнем регистре
         if "zxc" in message:
-            functions.send_message(peer_id, "qwe")
+            f.send_message(peer_id, "qwe")
         elif "qwe" in message:
-            functions.send_message(peer_id, "zxc")
+            f.send_message(peer_id, "zxc")
         elif "ауе" in message:
-            functions.send_message(peer_id, functions.open_txt("aue.txt"))
+            f.send_message(peer_id, f.open_txt("aue.txt"))
         elif "соня" in message:
-            functions.send_message(peer_id, "шлюха")
+            f.send_message(peer_id, "шлюха")
         elif "пик пик пик" in message:
-            functions.delay_send_message(peer_id, functions.open_txt("ramzes.txt"), trigger)
+            f.delay_send_message(peer_id, f.open_txt("ramzes.txt"), trigger)
             trigger = True
         elif "1000-7" in message:
-            functions.delay_send_message(peer_id, functions.psycho(), trigger)
+            f.delay_send_message(peer_id, f.psycho(), trigger)
             trigger = True
         elif "!рандом" in message:
-            functions.send_message(peer_id, functions.send_random(peer_id))
+            f.send_message(peer_id, f.send_random(peer_id))
         elif "ping" in message:
-            functions.send_message(peer_id, "pong")
+            f.send_message(peer_id, "pong")
         elif "/кто" in message:
-            functions.send_message(peer_id, functions.who(peer_id, message))
+            f.send_message(peer_id, f.who(peer_id, message))
         elif "/вероятность" in message:
-            functions.send_message(peer_id, functions.chance(message))
+            f.send_message(peer_id, f.chance(message))
         elif "/iq" in message:
-            functions.send_message(peer_id, functions.iq(message))
+            f.send_message(peer_id, f.iq(message))
         elif "!кто кого" in message:
-            functions.send_message(peer_id, functions.love(peer_id))
+            f.send_message(peer_id, f.love(peer_id))
         elif "/photo" in message:
-            functions.send_photo(peer_id, functions.random_photo_id())
+            f.send_attachment(peer_id, f.random_photo_id())
         elif "сообщения" in message:
-            functions.send_message(peer_id, functions.appeal(from_id) + " ваши сообщения: " + str(functions.message_counter_read(from_id)))
+            f.send_message(peer_id, f.appeal(from_id) + " ваши сообщения: " + str(f.message_counter_read(from_id)))
+        elif "gif" in message:
+            f.send_attachment(peer_id, "doc-181110264_658017648")
+        elif "ник" in message:
+            f.send_message(peer_id, f.dead_inside_nicks())
+        # elif "мем" in message:  не работает переделать
+        #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))  # photo-174862538_457403123
