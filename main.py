@@ -19,6 +19,8 @@ for event in longPoll.listen():
         from_id = event.obj["from_id"]  # id пользователя, который отправил сообщение
         peer_id = event.obj["peer_id"]  # peer_id беседы или ЛС, откуда пришло сообщение
 
+        functions.message_counter(from_id)
+
         # lower - это метод приведения к нижнему регистру. Для регистронезависимости.
         message = event.obj["text"].lower()
         # message теперь в нижнем регистре, поэтому все проверки делаем тоже в нижнем регистре
@@ -50,3 +52,5 @@ for event in longPoll.listen():
             functions.send_message(peer_id, functions.love(peer_id))
         elif "/photo" in message:
             functions.send_photo(peer_id, functions.random_photo_id())
+        elif "сообщения" in message:
+            functions.send_message(peer_id, functions.appeal(from_id) + " ваши сообщения: " + str(functions.message_counter_read(from_id)))

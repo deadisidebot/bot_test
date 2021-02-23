@@ -2,6 +2,7 @@ from vk_api import VkApi
 from vk_api.utils import get_random_id  # для get_random_id()
 import random
 import time
+import sqlite3
 
 
 def open_txt(txt_name):  # возвращяет текст из тестового файла
@@ -24,6 +25,13 @@ def send_message(peer_id, message):  # отправляет сообщениие
         message=message,
         random_id=get_random_id(),
     )
+
+
+def appeal(from_id):
+    answer = vk.users.get(
+        user_ids=from_id,
+    )
+    return "@id" + str(from_id) + "(" + answer[0]["first_name"] + " " + answer[0]["last_name"] + ")"
 
 
 def send_random(peer_id):  # возвращяет обращение к любому участнику беседы(нужны права администратора для бота)
@@ -70,7 +78,7 @@ def love(peer_id):  # возвращяет 2 человек из беседы
     return first_person + " любит " + second_person
 
 
-def send_photo(peer_id, attachment):
+def send_photo(peer_id, attachment):  # отправляет фото
     vk.messages.send(
         peer_id=peer_id,
         attachment=attachment,
@@ -95,3 +103,41 @@ def delay_send_message(peer_id, text_message, trigger):
         else:
             send_message(peer_id, "защита от манука")
 
+
+def read_db():
+    connection = sqlite3.connect("profiles.db")
+    cursor = connection.cursor()
+    result = cursor.execute("SELECT * FROM id_table").fetchall()
+    connection.close()
+    return result
+
+
+def message_counter_read(from_id):
+    connection = sqlite3.connect("profiles.db")
+    cursor = connection.cursor()
+    message_count = list(cursor.execute("SELECT * FROM id_table WHERE id = ?", [str(from_id)], ))[0][1]
+    connection.close()
+    return message_count
+
+
+def message_counter(from_id):
+    if from_id > 0:
+        in_base = False
+        result = read_db()
+
+        for i in result:
+            if i[0] == from_id:
+                in_base = True
+                break
+
+        connection = sqlite3.connect("profiles.db")
+        cursor = connection.cursor()
+
+        if not in_base:
+            cursor.execute("INSERT INTO id_table(id, message_count) VALUES(?, ?)", (from_id, 1,))
+        else:
+            message_count = message_counter_read(from_id) + 1
+            cursor.execute("UPDATE id_table SET message_count = ? WHERE id = ?", (message_count, from_id,))
+
+        connection.commit()
+        connection.close()
