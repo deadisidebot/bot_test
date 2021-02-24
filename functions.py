@@ -86,7 +86,8 @@ def dead_inside_nicks():  # возвращяет ник состоящий из 
         ans = ans + " " + fv
     return ans
 
-def estimation(message):
+
+def estimation(message, from_id):  # возвращяет строку с обращением и оценкой события
     words = open_txt("estimation.txt").split(",")
     ans = " "
     for _ in range(1, 2):
