@@ -62,6 +62,8 @@ for event in longPoll.listen():
             f.send_message(peer_id, f.estimation(message, from_id))
         elif "лизо" in message:
             f.send_message(peer_id, "шаболда")
+        elif "ишма" in message:
+            f.send_message(peer_id, "Сильный лидер")
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
         # photo-174862538_457403123
