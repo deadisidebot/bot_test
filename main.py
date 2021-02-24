@@ -42,23 +42,23 @@ for event in longPoll.listen():
             f.send_message(peer_id, f.send_random(peer_id))
         elif "ping" in message:
             f.send_message(peer_id, "pong")
-        elif "/кто" in message:
+        elif "!кто" in message:
             f.send_message(peer_id, f.who(peer_id, message))
-        elif "/вероятность" in message:
+        elif "!вероятность" in message:
             f.send_message(peer_id, f.chance(message))
-        elif "/iq" in message:
+        elif "!iq" in message:
             f.send_message(peer_id, f.iq(message))
-        elif "!кто кого" in message:
+        elif "/кто кого" in message:
             f.send_message(peer_id, f.love(peer_id))
-        elif "/photo" in message:
+        elif "!photo" in message:
             f.send_attachment(peer_id, f.random_photo_id())
-        elif "сообщения" in message:
+        elif "!сообщения" in message:
             f.send_message(peer_id, f.appeal(from_id) + " ваши сообщения: " + str(f.message_counter_read(from_id)))
-        elif "gif" in message:
+        elif "!gif" in message:
             f.send_attachment(peer_id, "doc-181110264_658017648")
-        elif "ник" in message:
+        elif "!ник" in message:
             f.send_message(peer_id, f.dead_inside_nicks())
-        elif "/оцени" in message:
+        elif "!оцени" in message:
             f.send_message(peer_id, f.estimation(message, from_id))
         elif "лизо" in message:
             f.send_message(peer_id, "шаболда")
