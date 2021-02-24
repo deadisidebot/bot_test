@@ -58,6 +58,10 @@ for event in longPoll.listen():
             f.send_attachment(peer_id, "doc-181110264_658017648")
         elif "ник" in message:
             f.send_message(peer_id, f.dead_inside_nicks())
+        elif '/оцени' in message:
+            f.send_message(peer_id, f.estimation(message))
+        elif 'лизо' in message:
+            f.send_message(peer_id, "шаболда")
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
         # photo-174862538_457403123
