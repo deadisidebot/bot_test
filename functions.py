@@ -86,6 +86,14 @@ def dead_inside_nicks():  # возвращяет ник состоящий из 
         ans = ans + " " + fv
     return ans
 
+def estimation(message):
+    words = open_txt("estimation.txt").split(",")
+    ans = " "
+    for _ in range(1, 2):
+        words = random.choice(words)
+        ans = ans + " " + words
+    return appeal(from_id) + ", Я думаю, что " + message.replace("/оцени", "") + " " + ans
+
 
 def send_attachment(peer_id, attachment):  # отправляет фото/видео и т.д.
     vk.messages.send(
