@@ -64,7 +64,7 @@ for event in longPoll.listen():
             f.send_message(peer_id, "шаболда")
         elif "ишма" in message:
             f.send_message(peer_id, "Сильный лидер")
-        elif message == "мать":
+        elif "мать" in message:
             f.send_message(peer_id, f.open_txt("mather.txt"))
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
