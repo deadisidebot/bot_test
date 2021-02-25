@@ -24,9 +24,9 @@ for event in longPoll.listen():
         # lower - это метод приведения к нижнему регистру. Для регистронезависимости.
         message = event.obj["text"].lower()
         # message теперь в нижнем регистре, поэтому все проверки делаем тоже в нижнем регистре
-        if "zxc" in message:
+        if message == "zxc":
             f.send_message(peer_id, "qwe")
-        elif "qwe" in message:
+        elif message == "qwe":
             f.send_message(peer_id, "zxc")
         elif "ауе" in message:
             f.send_message(peer_id, f.open_txt("aue.txt"))
@@ -64,7 +64,7 @@ for event in longPoll.listen():
             f.send_message(peer_id, "шаболда")
         elif "ишма" in message:
             f.send_message(peer_id, "Сильный лидер")
-        elif "мать" in message:
+        elif message == "мать":
             f.send_message(peer_id, f.open_txt("mather.txt"))
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
