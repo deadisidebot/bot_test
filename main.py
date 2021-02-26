@@ -48,7 +48,7 @@ for event in longPoll.listen():
             f.send_message(peer_id, f.chance(message))
         elif "!iq" in message:
             f.send_message(peer_id, f.iq(message))
-        elif "/кто кого" in message:
+        elif "!кто кого" in message:
             f.send_message(peer_id, f.love(peer_id))
         elif "!photo" in message:
             f.send_attachment(peer_id, f.random_photo_id())
@@ -66,6 +66,8 @@ for event in longPoll.listen():
             f.send_message(peer_id, "Сильный лидер")
         elif "мать" in message:
             f.send_message(peer_id, f.open_txt("mather.txt"))
+        elif message == "!команды":
+            f.send_message(peer_id, f.open_txt("comands.txt"))
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
         # photo-174862538_457403123

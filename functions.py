@@ -56,18 +56,18 @@ def psycho():  # возвращяет стороку с 1000 993 и т.д
 
 
 def who(peer_id, message):  # возвращят строку с упоминанием случайного человека из беседы
-    text = message.replace("/кто", "")
+    text = message.replace("!кто", "")
     return "Я думаю что" + text + " " + send_random(peer_id)
 
 
 def chance(message):  # возвращяет строку с вероятностью какого-либо события
-    text = message.replace("/вероятность", "")
+    text = message.replace("!вероятность", "")
     ran = random.randint(1, 100)
     return "Вероятность " + text + " " + str(ran) + "% "
 
 
 def iq(message):  # возвращяет обращение + случайное значение iq
-    text = message.replace("/iq", "")
+    text = message.replace("!iq", "")
     ran = random.randint(1, 300)
     return "Я думаю, что" + text + " имеет " + str(ran) + " iq"
 
@@ -93,7 +93,7 @@ def estimation(message, from_id):  # возвращяет строку с обр
     for _ in range(1, 2):
         words = random.choice(words)
         ans = ans + " " + words
-    return appeal(from_id) + ", Я думаю, что " + message.replace("/оцени", "") + " " + ans
+    return appeal(from_id) + ", Я думаю, что " + message.replace("!оцени", "") + " " + ans
 
 
 def send_attachment(peer_id, attachment):  # отправляет фото/видео и т.д.
