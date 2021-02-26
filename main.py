@@ -51,7 +51,7 @@ for event in longPoll.listen():
         elif "!кто кого" in message:
             f.send_message(peer_id, f.love(peer_id))
         elif "!photo" in message:
-            f.send_attachment(peer_id, f.random_photo_id())
+            f.send_attachment(peer_id, "photo-181110264_457239022")
         elif "!сообщения" in message:
             f.send_message(peer_id, f.appeal(from_id) + " ваши сообщения: " + str(f.message_counter_read(from_id)))
         elif "!gif" in message:
