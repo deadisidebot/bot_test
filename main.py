@@ -38,8 +38,6 @@ for event in longPoll.listen():
         elif "1000-7" in message:
             f.delay_send_message(peer_id, f.psycho(), trigger)
             trigger = True
-        elif "!рандом" in message:
-            f.send_message(peer_id, f.send_random(peer_id))
         elif "ping" in message:
             f.send_message(peer_id, "pong")
         elif "!кто" in message:
