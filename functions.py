@@ -162,7 +162,8 @@ def message_counter(from_id):  # считает и записывает коли
 
 
 def get_reply_from_id(event):
-    return event.obj.reply_message["from_id"]
+    reply_from_id = event.obj["fwd_messages"][0]["from_id"]  # id пользователя чье сообщение пересланно
+    return reply_from_id
 
 
 def fuck_someone(from_id1, from_id2):  # from_id1 - инициализатор, from_id2 - кого ебут

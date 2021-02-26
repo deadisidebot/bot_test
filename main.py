@@ -67,7 +67,11 @@ for event in longPoll.listen():
         elif message == "!команды":
             f.send_message(peer_id, f.open_txt("comands.txt"))
         elif "!выебать" in message:
-            f.send_message(peer_id, f.fuck_someone(from_id, f.get_reply_from_id(event)))
+            reply_id = f.get_reply_from_id(event)
+            if reply_id > 0:
+                f.send_message(peer_id, f.fuck_someone(from_id, reply_id))
+            else:
+                f.send_message(peer_id, f.appeal(from_id) + " сломал хуй")
         # elif "мем" in message:  не работает переделать
         #     functions.send_attachment(peer_id, functions.another_group_photos("voiceovers", 1))
         # photo-174862538_457403123
